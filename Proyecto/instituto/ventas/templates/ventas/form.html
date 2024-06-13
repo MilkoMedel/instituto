@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chile limpio</title>
+    <link rel="stylesheet" href="{% static 'CSS/style_main.css' %}">
+    <!-- este scrip me permite utilizar los metodos de jquery para validar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- este link me permite implementar boostrap apra los colores para validar los campos -->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="title">Formulario de registro</div><br>
+        <form action="#" id="form">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Rut</span>
+                    <input type="text" maxlength="12" id="rut" placeholder="xxxxxxxx-x (sin puntos)" class="input-validate-rut" onkeypress="return isNumber(event)" oninput="checkRut(this)" required="">
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Apellido Paterno</span>
+                    <input type="text" id="paterno" placeholder="Vilchez" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Apellido Materno</span>
+                    <input type="text" id="materno" placeholder="Montenegro" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Nombres</span>
+                    <input type="text" id="nombre" placeholder="Jose Manuel" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Fecha nacimiento</span>
+                    <input type="date" id="fecha" placeholder="01-02-1999" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Edad</span>
+                    <input type="text" maxlength="2" id="edad" placeholder="45" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" id="correo" placeholder="jvilchez@duocuc.cl" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Celular / Telefono</span>
+                    <input type="text" maxlength="11" id="celular" placeholder="56912345678" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Profesión</span>
+                    <input type="text" id="profesion" placeholder="Docente" required>
+                    
+                </div>
+                <div class="input-box">
+                    <span class="details">Motivo de postulación</span>
+                    <input type="text" id="motivo" placeholder="Me motiva su mensaje... " required>
+                    
+                </div>
+            </div>
+            <div class="gender-details">
+                <input type="radio" name="gender" id="dot-1">
+                <input type="radio" name="gender" id="dot-2">
+                <input type="radio" name="gender" id="dot-3" checked>
+                <span class="details-title">Género</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Hombre</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Mujer</span>
+                    </label>
+                    <label for="dot-3">
+                        <span class="dot three"></span>
+                        <span class="gender">Otro</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="registrar">
+            </div>
+            <a href="{% url 'login' %}">Volver al Login</a>
+        </form>
+    </div>
+    <script src="{% static 'JS/validaciones.js' %}"></script>
+</body>
+</html>
