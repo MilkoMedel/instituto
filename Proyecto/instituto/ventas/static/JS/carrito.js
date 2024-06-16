@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para agregar un producto al carrito
     function addProductToCart(infoProduct) {
-        const exits = allProducts.some(product => product.title === infoProduct.title);
+        const exists = allProducts.some(product => product.title === infoProduct.title);
 
-        if (exits) {
+        if (exists) {
             const products = allProducts.map(product => {
                 if (product.title === infoProduct.title) {
                     product.quantity++;
@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Función para mostrar  HTML
-    const showHTML = () =>{
+    // Función para mostrar HTML
+    const showHTML = () => {
         // Selección de elementos del DOM
         const cartEmpty = document.querySelector('.cart-empty');
         const rowProduct = document.querySelector('.row-product');
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const countProducts = document.querySelector('#contador-productos');
 
         if (!allProducts.length) {
-            cartEmpty.classList.remove('hidden');
+            cartEmpty.classList.remove('show');
             rowProduct.classList.add('hidden');
             cartTotal.classList.add('hidden');
         } else {
@@ -117,9 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             rowProduct.append(containerProduct);
 
-            total = 
-                total + parseInt(product.quantity * product.price.slice(1));
-		    totalOfProducts = totalOfProducts + product.quantity;
+            total += product.quantity * parseFloat(product.price.replace('$', ''));
+            totalOfProducts += product.quantity;
         });
 
         valorTotal.innerText = `$${total}`;
