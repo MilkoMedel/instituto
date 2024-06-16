@@ -76,27 +76,27 @@
                     <h3>Total:</h3>
                     <span class="total-pagar">$1450</span>
                 </div>
-                <p class="cart-empty">El carrito está vacío</p>
+                <p class="cart-empty">El carrito esta vacio</p>
             </div>
         </div>
     </div>
     <section class="galery container">
         <div class="card" onclick="voltear(this)">    
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenchapsue500.webp' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Chapsui 500 gr</h2>
-                        <p> $ 1.450</p>
+                        <p> $ 1450</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
             </div>
         </div> 
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenhbg100.webp' %}" alt="">
                 </div>
@@ -111,14 +111,14 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenhbg150.webp' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Hamburguesa 150 gr</h2>
-                        <p> $ 1.550</p>
+                        <p> $ 1550</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenlata350.png' %}" alt="">
                 </div>
@@ -141,14 +141,14 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenlaysCE134.webp' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Papas fritas Lays Crema Cebolla 134 gr</h2>
-                        <p> $ 2.300</p>
+                        <p> $ 2300</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
@@ -156,14 +156,14 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenmnt473.png' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Monster Energi Drink 473 cc</h2>
-                        <p> $ 1.800</p>
+                        <p> $ 1800</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
@@ -171,14 +171,14 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenpapas5k.jpeg' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Papas Fritas Mccain 5k</h2>
-                        <p> $ 6.000</p>
+                        <p> $ 6000</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
@@ -186,14 +186,14 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenSP15.webp' %}" alt="">
                 </div>
                 <div class="card-face back-face">
                     <div class="contenedor-info">
                         <h2>Bebida Sprite 1.5L</h2>
-                        <p> $ 1.990</p>
+                        <p> $ 1990</p>
                         <a class="btn-add-cart">Agregar al carrito</a>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
         </div> 
             
         <div class="card" onclick="voltear(this)">
-            <div class="card-container">
+            <div class="card-product">
                 <div class="card-face front-face">
                     <img src="{% static 'img/imagenwatts300.webp' %}" alt="">
                 </div>
@@ -244,11 +244,12 @@
             </div>
         </section>
     </footer>
-    <script src="{% static 'JS/carrito.js' %}"></script>
+    
     <script>
         function voltear(card){
-            card.querySelector('.card-container').classList.toggle('is-flipped')
+            card.querySelector('.card-product').classList.toggle('is-flipped')
         }
     </script>
+    <script src="{% static 'JS/carrito.js' %}"></script>
 </body>
 </html>
