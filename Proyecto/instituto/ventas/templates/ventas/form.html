@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <div class="title">Formulario de registro</div><br>
-        <form action="#" id="form">
+        <form id="form" method="post">
             {% csrf_token %}
             <div class="user-details">
                 <div class="input-box">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">contraseña</span>
-                    <input type="password" id="profesion" required>
+                    <input type="password" id="password" required>
                     
                 </div>
             </div>
