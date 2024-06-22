@@ -18,7 +18,7 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
-
+    
 class Carrito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 

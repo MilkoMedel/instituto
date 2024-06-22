@@ -135,8 +135,8 @@ $(document).ready(function(){
             var currentValue = inputField.val().trim();
             if (currentValue.length < 3 || currentValue.length > 20) {
                 inputField[0].setCustomValidity("Debe contener entre 3 y 20 caracteres.");
-            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(currentValue)) {
-                inputField[0].setCustomValidity("Solo se permiten letras y espacios.");
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*)?$/.test(currentValue)) {
+                inputField[0].setCustomValidity("Solo se permiten letras y espacios, separados por un espacio si son dos palabras.");
             } else {
                 inputField[0].setCustomValidity("");
             }
