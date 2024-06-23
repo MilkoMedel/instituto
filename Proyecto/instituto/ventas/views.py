@@ -19,8 +19,8 @@ def form(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
         if form.is_valid():
-            form.save()  # Guarda el formulario si es válido
-            return redirect(request,'ventas/login.html')  # Redirige a la página de inicio de sesión después del registro exitoso
+            form.save()
+            return redirect('login')  # Redirigir a la página de inicio de sesión después del registro exitoso
     else:
         form = UsuarioForm()
     
@@ -35,7 +35,7 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect(request,'ventas/galeria.html')  # Redirige a la página de galería después del inicio de sesión exitoso
+                return redirect('galeria')  # Redirige a la página de galería después del inicio de sesión exitoso
     else:
         form = AuthenticationForm()
     
