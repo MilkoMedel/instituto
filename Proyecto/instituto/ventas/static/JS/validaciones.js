@@ -128,40 +128,20 @@ function validarCelular(entrada) {
 }
 
 $(document).ready(function(){
-    // Función para validar el campo de apellido paterno
-    function validarPaterno() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20 || !/^[a-zA-Z]+$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("El apellido paterno debe contener entre 3 y 20 letras.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    }
-
-    // Función para validar el campo de apellido materno
-    function validarMaterno() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20 || !/^[a-zA-Z]+$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("El apellido materno debe contener entre 3 y 20 letras.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    }
-
-    // Función para validar el campo de nombre
-    function validarNombre() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20 || !/^[a-zA-Z]+$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("El nombre debe contener entre 3 y 20 letras.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    }
-
-    // Asignar eventos de entrada a los campos
-    $('#paterno').on('input', validarPaterno);
-    $('#materno').on('input', validarMaterno);
-    $('#nombre').on('input', validarNombre);
+    // Función para validar apellidos y nombre
+    $('#paterno, #nombre').each(function() {
+        var inputField = $(this);
+        inputField.on('input', function() {
+            var currentValue = inputField.val().trim();
+            if (currentValue.length < 3 || currentValue.length > 20) {
+                inputField[0].setCustomValidity("Debe contener entre 3 y 20 caracteres.");
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*)?$/.test(currentValue)) {
+                inputField[0].setCustomValidity("Solo se permiten letras y espacios, separados por un espacio si son dos palabras.");
+            } else {
+                inputField[0].setCustomValidity("");
+            }
+        });
+    });
 
     // Evento input para el campo de fecha de nacimiento
     $('#fecha').on('input', function() {
@@ -175,10 +155,20 @@ $(document).ready(function(){
     });
 
     // Evento input para el campo de correo electrónico
-    $('#email').on('input', function() {
+    $('#correo').on('input', function() {
         var email = $(this).val();
         if (!validarEmail(email)) {
             $(this)[0].setCustomValidity("Ingrese un correo electrónico válido con el dominio '@gmail.com'.");
+        } else {
+            $(this)[0].setCustomValidity("");
+        }
+    });
+
+    // Evento input para el campo de contraseña
+    $('#password').on('input', function() {
+        var currentValue = $(this).val();
+        if (currentValue.length < 6 || currentValue.length > 20) {
+            $(this)[0].setCustomValidity("La contraseña debe contener entre 6 y 20 caracteres.");
         } else {
             $(this)[0].setCustomValidity("");
         }
@@ -220,6 +210,7 @@ $(document).ready(function(){
         }
     });
 });
+
 
 
 

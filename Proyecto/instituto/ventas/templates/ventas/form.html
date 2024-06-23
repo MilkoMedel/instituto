@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chile limpio</title>
+    <title>Formulario de registro</title>
     <link rel="stylesheet" href="{% static 'CSS/style_main.css' %}">
     <!-- este scrip me permite utilizar los metodos de jquery para validar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -14,64 +14,60 @@
 <body>
     <div class="container">
         <div class="title">Formulario de registro</div><br>
-        <form action="#" id="form">
+        <form id="form" method="post">
             {% csrf_token %}
             <div class="user-details">
                 <div class="input-box">
+                    <span class="details">Nombre de Usuario</span>
+                    <input type="text" name="username" placeholder="Nombre de Usuario" required>
+                </div>
+                <div class="input-box">
                     <span class="details">Rut</span>
-                    <input type="text" maxlength="12" id="rut" placeholder="xxxxxxxx-x (sin puntos)" class="input-validate-rut" onkeypress="return isNumber(event)" oninput="checkRut(this)" required="">
-                    
+                    <input type="text" name="rut" maxlength="12" placeholder="xxxxxxxx-x (sin puntos)" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Apellidos</span>
-                    <input type="text" id="paterno" name="paterno" placeholder="Vilchez Montenegro" required>
-                    
+                    <input type="text" name="apellidos" placeholder="Vilchez Montenegro" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Nombres</span>
-                    <input type="text" id="nombre" name="nombre" placeholder="Jose Antonio" required>
-                    
+                    <input type="text" name="nombres" placeholder="Jose Antonio" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Fecha nacimiento</span>
-                    <input type="date" id="fecha" placeholder="01-02-1999" required>
-                    
+                    <input type="date" name="fecha_nacimiento" placeholder="01-02-1999" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Edad</span>
-                    <input type="text" maxlength="2" id="edad" placeholder="45" required>
-                    
+                    <input type="text" name="edad" maxlength="2" placeholder="45" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Email</span>
-                    <input type="email" id="correo" placeholder="jvilchez@duocuc.cl" required>
-                    
+                    <input type="email" name="email" placeholder="jvilchez@duocuc.cl" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Celular / Telefono</span>
-                    <input type="text" maxlength="11" id="celular" placeholder="56912345678" required>
-                    
+                    <input type="text" name="celular" maxlength="11" placeholder="56912345678" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">contraseña</span>
-                    <input type="password" id="profesion" required>
-                    
+                    <span class="details">Contraseña</span>
+                    <input type="password" name="password" placeholder="hola1234" required>
                 </div>
             </div>
             <div class="gender-details">
-                <input type="radio" name="gender" id="dot-1">
-                <input type="radio" name="gender" id="dot-2">
-                <input type="radio" name="gender" id="dot-3" checked>
                 <span class="details-title">Género</span>
                 <div class="category">
+                    <input type="radio" name="genero" id="dot-1" value="M" required>
                     <label for="dot-1">
                         <span class="dot one"></span>
                         <span class="gender">Hombre</span>
                     </label>
+                    <input type="radio" name="genero" id="dot-2" value="F" required>
                     <label for="dot-2">
                         <span class="dot two"></span>
                         <span class="gender">Mujer</span>
                     </label>
+                    <input type="radio" name="genero" id="dot-3" value="O" required>
                     <label for="dot-3">
                         <span class="dot three"></span>
                         <span class="gender">Otro</span>
@@ -79,10 +75,10 @@
                 </div>
             </div>
             <div class="button">
-                <input type="submit" value="registrar">
+                <input type="submit" value="Registrar">
             </div>
-            <a href="{% url 'login' %}">Volver al Login</a>
         </form>
+        <a href="{% url 'login' %}">Volver al Login</a>
     </div>
     <script src="{% static 'JS/validaciones.js' %}"></script>
 </body>
