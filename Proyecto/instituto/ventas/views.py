@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import UsuarioForm
 
 def index(request):
     return render(request, 'ventas/index.html')
@@ -9,12 +10,21 @@ def index(request):
 @login_required
 def galeria(request):
     return render(request, 'ventas/galeria.html')
+
 @login_required
 def nosotros(request):
     return render(request, 'ventas/nosotros.html')
 
 def form(request):
-    return render(request, 'ventas/form.html')
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda el formulario si es válido
+            return redirect(request,'ventas/login.html')  # Redirige a la página de inicio de sesión después del registro exitoso
+    else:
+        form = UsuarioForm()
+    
+    return render(request, 'ventas/form.html', {'form': form})
 
 def login(request):
     if request.method == 'POST':
@@ -22,10 +32,11 @@ def login(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect('index')  # Redirige a la página principal después del inicio de sesión
+                return redirect(request,'ventas/galeria.html')  # Redirige a la página de galería después del inicio de sesión exitoso
     else:
         form = AuthenticationForm()
+    
     return render(request, 'ventas/login.html', {'form': form})

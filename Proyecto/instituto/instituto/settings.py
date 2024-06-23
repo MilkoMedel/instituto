@@ -42,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'instituto.urls'
@@ -88,6 +89,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -107,6 +112,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Authentication
 LOGIN_URL = '/ventas/login/'  # Ruta de la página de inicio de sesión
 LOGIN_REDIRECT_URL = '/ventas/index.html'  # Ruta a la que se redirige después del inicio de sesión
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
