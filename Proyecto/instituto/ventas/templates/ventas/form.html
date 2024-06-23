@@ -23,7 +23,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Rut</span>
-                    <input type="text" name="rut" maxlength="12" placeholder="xxxxxxxx-x (sin puntos)" required>
+                    <input type="text" name="rut" maxlength="12" placeholder="xxxxxxxx-x (sin puntos)" onkeypress="return isNumber(event)" oninput="checkRut(this)" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Apellidos</span>
