@@ -23,7 +23,7 @@ def form(request):
             return redirect('login')  # Redirigir a la página de inicio de sesión después del registro exitoso
     else:
         form = UsuarioForm()
-    
+
     return render(request, 'ventas/form.html', {'form': form})
 
 def login(request):
@@ -38,5 +38,6 @@ def login(request):
                 return redirect('galeria')  # Redirige a la página de galería después del inicio de sesión exitoso
     else:
         form = AuthenticationForm()
-    
+
     return render(request, 'ventas/login.html', {'form': form})
+
