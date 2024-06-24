@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import UsuarioForm, ProductoForm
 from .models import Producto, Carrito, DetalleCarrito
 from django.contrib import messages
+
 def index(request):
     return render(request, 'ventas/index.html')
 
@@ -34,7 +35,7 @@ def login(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
-            if user is not None:
+            if user is not None: 
                 auth_login(request, user)
                 return redirect('galeria')  # Redirige a la página de galería después del inicio de sesión exitoso
     else:

@@ -2,9 +2,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,User
 from django.db import models
 
 GENDER_CHOICES = [
-    ('M', 'Masculino'),
-    ('F', 'Femenino'),
-    ('O', 'Otro'),
+    ('Hombre', 'Hombre'),
+    ('Mujer', 'Mujer'),
+    ('Otro', 'Otro'),
 ]
 
 class UsuarioManager(BaseUserManager):

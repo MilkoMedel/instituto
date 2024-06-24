@@ -1,54 +1,21 @@
-
-function validationEye(){
+// Función para alternar la visibilidad de la contraseña
+function validationEye() {
     var x = document.getElementById("confirm-password");
     var y = document.getElementById("hide1");
     var z = document.getElementById("hide2");
-    if (x.type === "password"){
+    if (x.type === "password") {
         x.type = "text";
-        y.style.display="block";
-        z.style.display="none";
-    }else{
+        y.style.display = "block";
+        z.style.display = "none";
+    } else {
         x.type = "password";
-        y.style.display="none";
-        z.style.display="block";
+        y.style.display = "none";
+        z.style.display = "block";
     }
 }
 
-function validateUser(input){
-    var nameLength = $(input).val().length;
-    if (nameLength < 3 || nameLength > 20) {
-        $('#user-error').text('El usuario debe tener entre 3 y 20 caracteres.');
-        return false;
-    } else {
-        $('#user-error').text('');
-        return true;
-    }
-}
-
-function validateEmail(input){
-    var email = $(input).val();
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        $('#email-error').text('Por favor, introduce una dirección de correo electrónico válida.');
-        return false;
-    } else {
-        $('#email-error').text('');
-        return true;
-    }
-}
-
-function validatePassword(input){
-    var password = $(input).val();
-    if (password.length < 6) {
-        $('#password-error').text('La contraseña debe tener al menos 6 caracteres.');
-        return false;
-    } else {
-        $('#password-error').text('');
-        return true;
-    }
-}
-
-function validateConfirmPsw(){
+// Función para validar que las contraseñas coincidan
+function validateConfirmPassword() {
     var password = $('#password').val();
     var confirmPassword = $('#confirm-password').val();
     if (password !== confirmPassword) {
@@ -60,59 +27,53 @@ function validateConfirmPsw(){
     }
 }
 
-$(document).ready(function(){
-    $('#myInput').on('click', function(){
-        validationEye(this);
+// Función para validar un correo electrónico con el dominio "@gmail.com"
+function validarEmail(email) {
+    var emailRegex = /^[^\s@]+@gmail\.com$/;
+    return emailRegex.test(email);
+}
+
+$(document).ready(function() {
+    // Evento input para validar el campo de username
+    $('#username').on('input', function() {
+        var currentValue = $(this).val().trim();
+        if (currentValue.length < 3 || currentValue.length > 20) {
+            $(this)[0].setCustomValidity("El username debe tener entre 3 y 20 caracteres.");
+        } else if (!/^[a-zA-Z]+$/.test(currentValue)) {
+            $(this)[0].setCustomValidity("Solo se permiten letras para el username.");
+        } else {
+            $(this)[0].setCustomValidity("");
+        }
     });
 
-    $('#user').on('input', function(){
-        validateUser(this);
+    // Evento keypress para permitir solo letras en el campo de username
+    $('#username').on('keypress', function(event) {
+        var charCode = event.which ? event.which : event.keyCode;
+        // Permitir solo letras (ASCII: a-z, A-Z)
+        if (!(charCode >= 65 && charCode <= 90) && // letras mayúsculas
+            !(charCode >= 97 && charCode <= 122) && // letras minúsculas
+            !(charCode == 0 || charCode == 8)) { // teclas de navegación y retroceso
+            event.preventDefault();
+        }
     });
 
-    $('#email').on('input', function(){
-        validateEmail(this);
+    // Evento input para el campo de correo electrónico
+    $('#email').on('input', function() {
+        var email = $(this).val();
+        if (!validarEmail(email)) {
+            $(this)[0].setCustomValidity("Ingrese un correo electrónico válido con el dominio '@gmail.com'.");
+        } else {
+            $(this)[0].setCustomValidity("");
+        }
     });
 
-    $('#password').on('input', function(){
-        validatePassword(this);
-    });
-
-    $('#confirm-password').on('input', function(){
-        validateConfirmPsw();
-    });
-
-    $('form').on('submit', function(event){ 
-        var userLength = $('#user').val().length;
-        var email = $('#email').val();
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        var password = $('#password').val();
-        var confirmPassword = $('#confirm-password').val();
-        var valid = true; // Variable para verificar si todas las validaciones son correctas
-        
-        if (userLength === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0) {
-            // Verificar si algún campo está vacío y mostrar un mensaje de error
-            $('#user-error').text('Por favor, completa todos los campos.');
-            valid = false; // Indicar que la validación no pasó
-            event.preventDefault(); // Evitar el envío del formulario
-        } else if (userLength < 3 || userLength > 20) {
-            $('#user-error').text('El usuario debe tener entre 3 y 20 caracteres.');
-            valid = false; // Indicar que la validación no pasó
-            event.preventDefault(); // Evitar el envío del formulario
-        } else if (!emailRegex.test(email)) {
-            $('#email-error').text('Por favor, introduce una dirección de correo electrónico válida.');
-            valid = false; // Indicar que la validación no pasó
-            event.preventDefault(); // Evitar el envío del formulario
-        } else if (password.length < 6) {
-            $('#password-error').text('La contraseña debe tener al menos 6 caracteres.');
-            valid = false; // Indicar que la validación no pasó
-            event.preventDefault(); // Evitar el envío del formulario
-        } else if (password !== confirmPassword) {
-            $('#confirm-password-error').text('Las contraseñas no coinciden.');
-            valid = false; // Indicar que la validación no pasó
-            event.preventDefault(); // Evitar el envío del formulario
+    // Evento input para el campo de contraseña
+    $('#password').on('input', function() {
+        var currentValue = $(this).val();
+        if (currentValue.length < 6 || currentValue.length > 20) {
+            $(this)[0].setCustomValidity("La contraseña debe contener entre 6 y 20 caracteres.");
+        } else {
+            $(this)[0].setCustomValidity("");
         }
     });
 });
-
-
-
