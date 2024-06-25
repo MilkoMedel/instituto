@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
-from .models import Usuario,Producto
+from .models import Usuario
 
 class UsuarioForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -19,8 +19,3 @@ class UsuarioForm(forms.ModelForm):
         if commit:
             usuario.save()
         return usuario
-
-class ProductoForm(forms.ModelForm):
-    class Meta:
-        model = Producto
-        fields = ['nombre', 'descripcion', 'imagen', 'precio', 'stock', 'categoria']

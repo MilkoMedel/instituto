@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, galeria, nosotros, form, login, totalizar_pedido
+from .views import index, galeria, nosotros, form, login
 
 urlpatterns = [
     path('index/', index, name='index'),
@@ -7,5 +7,4 @@ urlpatterns = [
     path('nosotros/', nosotros, name='nosotros'),
     path('form/', form, name='form'),
     path('login/', login, name='login'),
-    path('ventas/totalizar/', totalizar_pedido, name='totalizar_pedido'),  # Asegúrate de definir correctamente la URL y el nombre de la vista
 ]
