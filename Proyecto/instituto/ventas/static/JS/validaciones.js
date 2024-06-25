@@ -128,73 +128,19 @@ function validarCelular(entrada) {
 }
 
 $(document).ready(function(){
-    // Evento input para validar el campo de username
-    $('#username').on('input', function() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20) {
-            $(this)[0].setCustomValidity("El username debe tener entre 3 y 20 caracteres.");
-        } else if (!/^[a-zA-Z]+$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("Solo se permiten letras para el username.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    });
-
-    // Evento keypress para permitir solo letras en el campo de username
-    $('#username').on('keypress', function(event) {
-        var charCode = event.which ? event.which : event.keyCode;
-        // Permitir solo letras (ASCII: a-z, A-Z)
-        if (!(charCode >= 65 && charCode <= 90) && // letras mayúsculas
-            !(charCode >= 97 && charCode <= 122) && // letras minúsculas
-            !(charCode == 0 || charCode == 8)) { // teclas de navegación y retroceso
-            event.preventDefault();
-        }
-    });
-
-    // Función para validar el campo de apellidos
-    $('#apellidos').on('input', function() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20) {
-            $(this)[0].setCustomValidity("Los apellidos deben tener entre 3 y 20 caracteres.");
-        } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*)?$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("Solo se permiten letras y espacios, separados por un espacio si son dos palabras.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    });
-
-    // Evento keypress para permitir solo letras en el campo de apellidos
-    $('#apellidos').on('keypress', function(event) {
-        var charCode = event.which ? event.which : event.keyCode;
-        // Permitir solo letras (ASCII: a-z, A-Z)
-        if (!(charCode >= 65 && charCode <= 90) && // letras mayúsculas
-            !(charCode >= 97 && charCode <= 122) && // letras minúsculas
-            !(charCode == 0 || charCode == 8 || charCode == 32)) { // teclas de navegación, retroceso y espacio
-            event.preventDefault();
-        }
-    });
-
-    // Función para validar el campo de nombres
-    $('#nombres').on('input', function() {
-        var currentValue = $(this).val().trim();
-        if (currentValue.length < 3 || currentValue.length > 20) {
-            $(this)[0].setCustomValidity("Los nombres deben tener entre 3 y 20 caracteres.");
-        } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*)?$/.test(currentValue)) {
-            $(this)[0].setCustomValidity("Solo se permiten letras y espacios, separados por un espacio si son dos palabras.");
-        } else {
-            $(this)[0].setCustomValidity("");
-        }
-    });
-
-    // Evento keypress para permitir solo letras en el campo de nombres
-    $('#nombres').on('keypress', function(event) {
-        var charCode = event.which ? event.which : event.keyCode;
-        // Permitir solo letras (ASCII: a-z, A-Z)
-        if (!(charCode >= 65 && charCode <= 90) && // letras mayúsculas
-            !(charCode >= 97 && charCode <= 122) && // letras minúsculas
-            !(charCode == 0 || charCode == 8 || charCode == 32)) { // teclas de navegación, retroceso y espacio
-            event.preventDefault();
-        }
+    // Función para validar apellidos y nombre
+    $('#paterno, #nombre').each(function() {
+        var inputField = $(this);
+        inputField.on('input', function() {
+            var currentValue = inputField.val().trim();
+            if (currentValue.length < 3 || currentValue.length > 20) {
+                inputField[0].setCustomValidity("Debe contener entre 3 y 20 caracteres.");
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*)?$/.test(currentValue)) {
+                inputField[0].setCustomValidity("Solo se permiten letras y espacios, separados por un espacio si son dos palabras.");
+            } else {
+                inputField[0].setCustomValidity("");
+            }
+        });
     });
 
     // Evento input para el campo de fecha de nacimiento
