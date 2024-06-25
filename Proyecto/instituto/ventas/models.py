@@ -1,10 +1,10 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,User
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 GENDER_CHOICES = [
-    ('Hombre', 'Hombre'),
-    ('Mujer', 'Mujer'),
-    ('Otro', 'Otro'),
+    ('M', 'Masculino'),
+    ('F', 'Femenino'),
+    ('O', 'Otro'),
 ]
 
 class UsuarioManager(BaseUserManager):
@@ -72,21 +72,18 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    imagen = models.ImageField(upload_to='productos/')
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.IntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.nombre
 
 class Carrito(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     productos = models.ManyToManyField(Producto, through='DetalleCarrito')
 
     def __str__(self):
-        return f"Carrito de {self.usuario.username}"
+        return f"Carrito de {self.usuario.email}"
 
 class DetalleCarrito(models.Model):
     carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
@@ -94,13 +91,12 @@ class DetalleCarrito(models.Model):
     cantidad = models.PositiveIntegerField()
 
 class Boleta(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    estado = models.CharField(max_length=20, default='recibido')
 
     def __str__(self):
-        return f"Boleta {self.id} de {self.usuario.username}"
+        return f"Boleta {self.id} de {self.usuario.email}"
 
 class DetalleBoleta(models.Model):
     boleta = models.ForeignKey(Boleta, on_delete=models.CASCADE)
